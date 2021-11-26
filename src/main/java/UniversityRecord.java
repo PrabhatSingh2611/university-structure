@@ -234,13 +234,13 @@ public class UniversityRecord {
         map30.put(new Subject("Cardiology"), 65);
         map30.put(new Subject("General surgery"), 61);
         map30.put(new Subject("Health Dynamics"), 69);
-        studentList8.add(new Student(102, 23, "Harsh", "Satla", false, map30));
+        studentList8.add(new Student(102, 23, "Harsh", "Satla", true, map30));
         Map<Subject, Integer> map31 = new HashMap<>();
         map31.put(new Subject("Neurology"), 72);
         map31.put(new Subject("Cardiology"), 78);
         map31.put(new Subject("General surgery"), 84);
         map31.put(new Subject("Health Dynamics"), 78);
-        studentList8.add(new Student(103, 25, "Sunny ", "Vishwakarma", false, map31));
+        studentList8.add(new Student(103, 25, "Sunny ", "Vishwakarma", true, map31));
         Map<Subject, Integer> map32 = new HashMap<>();
         map32.put(new Subject("Neurology"), 55);
         map32.put(new Subject("Cardiology"), 56);

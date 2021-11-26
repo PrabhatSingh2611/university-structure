@@ -1,4 +1,6 @@
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MainDemo {
     public static void main(String[] args) {
@@ -36,8 +38,8 @@ public class MainDemo {
                                         .collect(Collectors.toList())
                         )
                 ).entrySet()
-                .stream()
-             .forEach(System.out::println);
+                .stream();
+            // .forEach(System.out::println);
 
 
         //2 ------Average performance by group
@@ -90,21 +92,15 @@ public class MainDemo {
                 .stream()
                 .flatMap(department -> department.getGroups().stream())
                 .flatMap(groups -> groups.getStudents().stream())
-                        .collect(Collectors.toMap(student -> student.getMarksPerSubject()
-                                        .entrySet()
-                                        .stream()
-                                        .map(entry -> entry.getKey())
-                                        .map(subject -> subject.getSubjectTitle()),
-                                groups -> groups.getMarksPerSubject()
-                                        .entrySet()
-                                        .stream()
-                                        .map(entry -> entry.getValue())
-                                        .map(Integer::doubleValue)
-                                        .reduce((m1,m2) -> (m1+m2) / 2)
-                                        .orElse(0.0)
-                                ,(p1,p2)-> p1)
-                                        ).entrySet().stream();
-               // .forEach(p -> System.out.println(p.getKey()+"value is"+p.getValue()));
+                        .flatMap(student -> student.getMarksPerSubject()
+                                .entrySet()
+                                .stream())
+                                .collect(Collectors.groupingBy(entry ->entry.getKey(),
+                                        Collectors.averagingInt(entry -> entry.getValue())
+                                )
+                                )
+                                        .entrySet().stream();
+                      //  .forEach(k -> System.out.println(k.getKey()+"average marks = "+k.getValue()));
 
 
         //6 ------to find list of student who are ready for army and are male
@@ -158,7 +154,7 @@ public class MainDemo {
                 .flatMap(department -> department.getGroups().stream())
                 .filter(groups -> groups.getStudents()
                         .stream().anyMatch(student -> student.getSurname().equalsIgnoreCase("Singh")));
-        //      .forEach(System.out::println);
+            // .forEach(System.out::println);
 
 
        //10 ------Print Records
@@ -169,9 +165,15 @@ public class MainDemo {
                         .forEach(groups -> groups.getStudents()
                                 .stream();
                                 //.forEach((student) -> System.out.println("Department name : "+department.getName()+ "Group name : "+ groups.getGroupId() +student))));
-
 */
+
+
+
+
+
+
+             }
     }
-}
+
 
 
